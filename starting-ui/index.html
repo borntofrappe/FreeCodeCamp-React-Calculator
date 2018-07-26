@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+
+  <title>Phone UI - Calculator</title>
+  <meta name="description" content="Create the UI of a phone displaying a calculator's app. Component of a larger project, that being a functioning calculator built with React."/>
+
+  <link rel="stylesheet" href="style.css"/>
+  <!-- <link rel="icon" href="tab_icon.png"> -->
+
+</head>
+
+<body>
+  <!-- in a wrapping container, used to recreate the outline of a phone, nest the div responsible for the calculator's application -->
+  <div class="phone--ui">
+
+    <div class="calculator">
+      <!-- the calculator is divided in two sections
+        display__previous shows the previous calculation, if present
+        display__current the current computation 
+      -->
+      <div class="calculator__display">
+        <!--
+          each display is divided in old, new computation 
+          - old shows the number included before, if present
+          - new shows the currently in the process of being typed, potentially including the operation
+          - computation shows the result of old and new together (without old, it shows just = new)
+        -->
+        <div class="display__previous">
+          <h2 class="previous--old">3</h2>
+          <h2 class="previous--new">+ 6</h2>
+          <h2 class="previous--computation">= 9</h2>
+        </div>
+
+        <div class="display__current">
+          <h2 class="current--old">9</h2>
+          <h2 class="current--new">+ 6</h2>
+          <h2 class="current--computation">= 15</h2>
+        </div>
+      </div>
+
+      <!-- the buttons's area includes the different buttons, mapped in a grid -->
+      <div class="calculator__input">
+
+        <!-- each button has a data-button attribute detailing the button's key -->
+        <button class="input--button" data-button="AC">AC</button>
+        <button class="input--button" data-button="/">/</button>
+        <button class="input--button" data-button="*">*</button>
+        <button class="input--button" data-button="7">7</button>
+        <button class="input--button" data-button="8">8</button>
+        <button class="input--button" data-button="9">9</button>
+        <button class="input--button" data-button="-">-</button>
+        <button class="input--button" data-button="4">4</button>
+        <button class="input--button" data-button="5">5</button>
+        <button class="input--button" data-button="6">6</button>
+        <button class="input--button" data-button="+">+</button>
+        <button class="input--button" data-button="1">1</button>
+        <button class="input--button" data-button="2">2</button>
+        <button class="input--button" data-button="3">3</button>
+        <button class="input--button" data-button="=">=</button>
+        <button class="input--button" data-button="0">0</button>
+        <button class="input--button" data-button=".">.</button>
+
+      </div><!-- close the calculator__input container -->
+      
+    </div><!-- close the calculator container -->
+
+  </div><!-- close the phone-ui container -->
+
+<!-- <script src="script.js"></script> -->
+</body>
+</html>
