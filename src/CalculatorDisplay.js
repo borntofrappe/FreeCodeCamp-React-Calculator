@@ -22,9 +22,9 @@ const CalculatorDisplay = (props) => {
   return(
     <div className="CalculatorDisplay">
 
-        <Header display>{props.display.previous}</Header>
+        <Header>{props.display.previous}</Header>
         <Header display>{props.display.current}</Header>
-        <Header display>{props.display.total}</Header>
+        <Header>{props.display.total}</Header>
 
     </div>
   );

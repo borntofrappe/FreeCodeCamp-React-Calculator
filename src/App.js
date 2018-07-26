@@ -102,27 +102,39 @@ class App extends Component {
 
     // store in a variable the text included by the textContent method 
     let value = e.target.textContent;
-    // store in a variable the current number displayed boldly on screen
-    let display = this.state.display.current;
+    // store in a variable the current display value
+    let previousDisplay = this.state.display.previous;
+    let currentDisplay = this.state.display.current;
+    let totalDisplay = this.state.display.total;
+    let regexOperator = /[+*/-]/;
+
     
     /*
     different buttons lead to different interactions
     - ac => clear the text in the current display 
-    - 0 => add a 0, but not in case the string starts with a zero (avoid having 2 zeros at the beginning of the result)
+    - 0 => add a 0, but avoid two consecutive zeros at the beginning of the display
+    - any number other than 0 => append the number 
+    - any operator sign => push the text in the previous position and displays the operator prominently 
     - . => add only if there doesn't exist a single decimal point
-    - any number other than 0 => appends the number 
-    - any operator sign pushes the text in the previous position and displays the operator prominently 
     */
 
     switch(value) {
       case 'ac':
-        display = '0';
+        previousDisplay = '';
+        currentDisplay = '0';
+        totalDisplay = '';
         break;
+
       case '0':
-        if(display[0] !== '0') {
-          display += value;
+        if(currentDisplay.length === 1 && currentDisplay[0] === '0') {
+          // do nothing
+        }
+        else {
+          currentDisplay += value;
+          totalDisplay = `= ${currentDisplay}`;
         }
       break;
+
       case '1':
       case '2':
       case '3':
@@ -132,27 +144,45 @@ class App extends Component {
       case '7':
       case '8':
       case '9':
-        if(display === '0') {
-          display = '';
+        if(currentDisplay === '0' || regexOperator.test(currentDisplay)) {
+          currentDisplay = '';
         }
-        display += value;
+        currentDisplay += value;
+        totalDisplay = `= ${currentDisplay}`;
+
         break;
+
       case '+':
       case '-':
       case '*':
       case '/':
-      break;
-      case '.':
-        if(display.indexOf('.') === -1) {
-          display += value;
+        if(!regexOperator.test(currentDisplay)) {          
+          previousDisplay = currentDisplay;
+          currentDisplay = value;
+        } 
+        else {
+          currentDisplay = value;
         }
-      break;
+        break;
+
+      case '.':
+        if(currentDisplay.indexOf('.') === -1) {
+          currentDisplay += value;
+          totalDisplay = `= ${currentDisplay}`;
+
+        }
+        break;
+
+      default:
+        break;
     }
 
 
     this.setState({
       display: {
-        current: display,
+        previous: previousDisplay,
+        current: currentDisplay,
+        total: totalDisplay
       }
     });
 
