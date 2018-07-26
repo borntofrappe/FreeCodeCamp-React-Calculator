@@ -1,0 +1,45 @@
+.CalculatorDisplay {
+  /* position the different displays one on top of the other, each taking a share of the display */
+  display: flex;
+  flex-direction: column;
+  padding: 0 0.5rem;
+  /* border bottom to separate the displays from the buttons */
+  border-bottom: 1px solid rgba(81,81,81,0.5);
+}
+.CalculatorDisplay .DisplayPrevious, 
+.CalculatorDisplay .DisplayCurrent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.CalculatorDisplay .DisplayPrevious h2, 
+.CalculatorDisplay .DisplayCurrent h2 {
+  flex-grow: 1;
+  font-family: var(--font);
+}
+
+.CalculatorDisplay .DisplayPrevious {
+  position: relative;
+}
+.CalculatorDisplay .DisplayPrevious:before {
+  position: absolute;
+  content: '';
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: 
+    repeating-linear-gradient(
+      to right, 
+      rgba(81,81,81,0.3) 0, 
+      rgba(81,81,81,0.3) 4%, 
+      transparent 4%, 
+      transparent 8%
+    );
+}
+.CalculatorDisplay .DisplayCurrent {
+  margin: 0.8rem 0 0;
+}
+

@@ -2,6 +2,10 @@ _Small note_
 
 The current project is being developed locally, through `create-react-app`, and a live pen will be added to the page once it is completed.
 
+_Update_
+
+The UI has been replicated in react, and the functionality is all that needs to be included. That being said, I choose here and now to prioritize sleep and rest over excessive work. In the morning though.
+
 # Preface 
 
 For the fourth project of five necessary to earn the _Front End Libraries_ certification @freeCodeCamp, the task is to create a functioning calculator.

@@ -1,0 +1,38 @@
+/* include the UI of the phone in which to display the calculator */
+.App {
+  /* style the phone UI to have a white background and be at most 350px wide */
+  background: var(--clr-phone);
+  width: 90vw;
+  max-width: 350px;
+  /* keeping the ratio of a normal phone, set the height in relation to the width property */
+  height: 144vw;
+  max-height: 560px;
+  /* include padding for the phone's application */
+  padding: 2rem 0.7rem 1rem;
+  /* include rounded corners and a notable shadow beneath the UI */
+  border-radius: 10px;
+  box-shadow: 7px 10px 10px var(--clr-theme-drk), -4px -2px 5px var(--clr-theme-drk);
+  /* position relative to include a couple of visuals to remind of a phone outline */
+  position: relative;
+}
+/* with one pseudo element each, include the volume and power buttons */
+.App:before,
+.App:after {
+  content: '';
+  position: absolute;
+  width: 0.3rem;
+  background: #fff;
+  border-radius: 0 5px 5px 0;
+}
+/* push the volume and power button to the right of the phone UI
+position them one after the other, following the padding included in the top of the UI */
+.App:before {
+  top: 7%;
+  left: 100%;
+  height: 15%;
+}
+.App:after {
+  top: 25%;
+  left: 100%;
+  height: 8%;
+}

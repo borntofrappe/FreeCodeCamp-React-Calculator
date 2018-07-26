@@ -1,0 +1,30 @@
+.CalculatorInput {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(5, 1fr);
+}
+.CalculatorInput button {
+  color: inherit;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  background: none;
+  border: none;
+  font-size: 1.1rem;
+}
+.CalculatorInput button[id="clear"] {
+  grid-column: span 2;
+}
+.CalculatorInput button[id="equals"] {
+  grid-row: span 2;
+}
+.CalculatorInput button[id="zero"] {
+  grid-column: span 2;
+}
+.CalculatorInput button:hover,
+.CalculatorInput button:focus {
+  filter: brightness(100%);
+  background: rgba(81,81,81,0.2);
+}
+.CalculatorInput button:active {
+  background: initial;
+}
