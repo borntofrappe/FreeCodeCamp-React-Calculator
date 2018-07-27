@@ -1,8 +1,8 @@
 _Small note_
 
-The current project is being developed locally, through `create-react-app`. A live pen will be added to the page once it is completed.
+The current project is being developed locally, through `create-react-app`.
 
-<!-- Working pen [right here]() -->
+Working pen [right here](https://codepen.io/borntofrappe/pen/OwxKEY)
 
 # Preface 
 
