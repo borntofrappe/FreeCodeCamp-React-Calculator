@@ -1,12 +1,22 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import Calculator from './Calculator';
+import CalculatorDisplay from './CalculatorDisplay';
+import CalculatorInput from './CalculatorInput';
 
 /** render the component responsible for the calculator and manage the state of the application 
  * 
  STATE
- * a field with an array of objects, used to define the different buttons (each with an id an text)
- * a field with an object, used to display the possible, different visuals in the calculator display  (the previous computation, if present, the current value, being typed through the buttons, total, already showing the running total before the eqaul sign is clicked)
+ it contains
+ * an object for the display
+ *    this nests different values for the different visuals to be included in the CalculatorDisplay component
+ *    - previous computation, if present
+ *    - current value, being typed through the buttons
+ *    - total, already showing the running total, even before the eqaul sign is clicked
+ * 
+ * an array of objects for the input
+ *    this nests one object for each button, detailing different tidbits of information
+ *    - id, to identify the buttons, and to be included as **key** attribute for React
+ *    - text, to include the in the buttons the matching visual
 
 */
 class App extends Component {
@@ -14,7 +24,6 @@ class App extends Component {
     super(props);
     this.state = {
       display: {
-        previous: '',
         current: '0',
         total: ''
       },
@@ -93,97 +102,80 @@ class App extends Component {
     this.handleButton = this.handleButton.bind(this);
   }
 
+  /** define the function run when a button in the input component is pressed
+   * 
+   * INPUT
+   * click event
+   * BEHAVIOR
+   * according to the button pressed and the behavior expected by the calculator, display numbers, operator signs, computations. As needed   * 
+  */
+
   handleButton(e) {
+    const regexDigits = /[0-9]/;
+    const regexOperators = /[+\-*/]/;
+    const regexDecimalPoint = /\./;
+    
     /*
     upon pressing a button, store its text in a variable to indentify the button itself 
     deal according to the consequences bound to each button, through a switch statement 
     this to update the current display 
     */
 
-    // store in a variable the text included by the textContent method 
-    let value = e.target.textContent;
-    // store in a variable the current display value
-    let previousDisplay = this.state.display.previous;
-    let currentDisplay = this.state.display.current;
-    let totalDisplay = this.state.display.total;
-    let regexOperator = /[+*/-]/;
+    // store in a variable the text which identifies each button
+    let target = e.target;
+    let value = target.textContent;
 
-    
-    /*
-    different buttons lead to different interactions
-    - ac => clear the text in the current display 
-    - 0 => add a 0, but avoid two consecutive zeros at the beginning of the display
-    - any number other than 0 => append the number 
-    - any operator sign => push the text in the previous position and displays the operator prominently 
-    - . => add only if there doesn't exist a single decimal point
-    */
+    // retrieve the values of the display from the state
+    let display = this.state.display;
 
-    switch(value) {
-      case 'ac':
-        previousDisplay = '';
-        currentDisplay = '0';
-        totalDisplay = '';
-        break;
-
-      case '0':
-        if(currentDisplay.length === 1 && currentDisplay[0] === '0') {
-          // do nothing
-        }
-        else {
-          currentDisplay += value;
-          totalDisplay = `= ${currentDisplay}`;
-        }
-      break;
-
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
-        if(currentDisplay === '0' || regexOperator.test(currentDisplay)) {
-          currentDisplay = '';
-        }
-        currentDisplay += value;
-        totalDisplay = `= ${currentDisplay}`;
-
-        break;
-
-      case '+':
-      case '-':
-      case '*':
-      case '/':
-        if(!regexOperator.test(currentDisplay)) {          
-          previousDisplay = currentDisplay;
-          currentDisplay = value;
-        } 
-        else {
-          currentDisplay = value;
-        }
-        break;
-
-      case '.':
-        if(currentDisplay.indexOf('.') === -1) {
-          currentDisplay += value;
-          totalDisplay = `= ${currentDisplay}`;
-
-        }
-        break;
-
-      default:
-        break;
+    if(value === "ac") {
+      display.current = '0';
+      display.total = '';
     }
-
-
-    this.setState({
-      display: {
-        previous: previousDisplay,
-        current: currentDisplay,
-        total: totalDisplay
+    else if(regexDigits.test(value)) {
+      if(display.current === '0') {
+        display.current = '';
       }
+      display.current += value;
+    }
+    else if(regexDecimalPoint.test(value)) {
+      if(display.current.indexOf('.') === -1) {
+        display.current += value;
+      }
+    }
+    else if(regexOperators.test(value)) {
+      if(display.current !== '0') {
+        if(!regexOperators.test(display.current)) {
+          display.total = display.current;
+          display.current = '';
+          display.current += value;
+        }
+        else {
+          if(display.current.length === 1) {
+            display.current = value;
+          }
+          else {
+            // nothing
+            let temp = display.total + display.current;
+            // eslint-disable-next-line
+            display.total = Math.round(eval(temp) * 10000)/10000;
+            display.current = value;
+          }
+        }
+      }
+    }
+    else {
+      if(display.current !== '0') {
+        let total = display.total + display.current;
+        display.total = '';
+        // eslint-disable-next-line
+        display.current = Math.round(eval(total) * 10000)/10000;
+      }
+    }
+    
+    
+    this.setState({
+      display: display
     });
 
     
@@ -192,7 +184,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Calculator buttons={this.state.buttons} display={this.state.display} handleButton={this.handleButton}/>
+        <div className="Calculator">
+            <CalculatorDisplay display={this.state.display}/>
+            <CalculatorInput buttons={this.state.buttons} handleButton={this.handleButton}/>
+        </div>
       </div>
     );
   }

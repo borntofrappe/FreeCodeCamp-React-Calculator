@@ -36,3 +36,12 @@ position them one after the other, following the padding included in the top of 
   left: 100%;
   height: 8%;
 }
+
+.Calculator {
+  background: #fff;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 3fr 4fr;
+}
