@@ -109,10 +109,6 @@ The following component-based structure is included on the basis of the HTML mar
 |`CalculatorInput`|Render the buttons of the calculator|
 
 
-
-<!--
-TODO: include notes on styled components once you have used the library with the React structure set up
-
 ## [Styled Components](https://www.styled-components.com/)
 
 **Install** 
@@ -125,5 +121,63 @@ npm i styled-components
 
 In the package.json it should be possible to find the connected package included.
 
+```JSON
+{
+  "styled-components": "^3.3.3"
+}
+```
 **Style**
--->
+
+Instead of styling components, you create with the library a component, which is then styled according to property-value pairs.
+
+The syntax here used doesn't differ wildly from straight CSS, so the learning curve is slightly softened.
+
+- create the styled component, with `styled.HTMLelement`
+
+  ```JS
+  const Header = styled.h2``;
+  ```
+
+- include property-value pairs in the described backticks.
+
+  ```JS
+  const Header = styled.h2`
+    font-size: 0.9rem;
+    color: rgba(81,81,81,0.5);
+  `;
+  ```
+
+- include the component as you would normally for any custom component, in the React structure.
+
+  ```JS
+  const ComponentName = () => {
+    return(
+      <div className="ComponentName">
+        <Header className="ComponentName">Header!!</Header>
+      </div>
+    );
+  };
+  ```
+
+This simple example actually covers most of what the project at hand has used in reference to _Styled Components_. That being said, there's another nugget worth of information.
+It is indeed possible to style components according to the props they held. For instance and for the project at hand, a second header is given a particular styling through the `extra` prop.
+
+```JS
+const Header = styled.h2`
+  font-size: 0.9rem;
+  color: rgba(81,81,81,0.5);
+
+  ${ props => props.extra && css`
+    text-decoration: underline;
+  `}
+`;
+
+const ComponentName = () => {
+  return(
+    <div className="ComponentName">
+      <Header className="ComponentName">Header!!</Header>
+      <Header className="ComponentName" extra>Extra Header!!</Header>
+    </div>
+  );
+};
+```

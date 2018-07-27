@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './css/App.css';
-import Calculator from './Calculator';
+import CalculatorDisplay from './CalculatorDisplay';
+import CalculatorInput from './CalculatorInput';
 
 /** render the component responsible for the calculator and manage the state of the application 
  * 
@@ -23,7 +24,6 @@ class App extends Component {
     super(props);
     this.state = {
       display: {
-        previous: '',
         current: '0',
         total: ''
       },
@@ -111,94 +111,71 @@ class App extends Component {
   */
 
   handleButton(e) {
+    const regexDigits = /[0-9]/;
+    const regexOperators = /[+\-*/]/;
+    const regexDecimalPoint = /\./;
+    
     /*
     upon pressing a button, store its text in a variable to indentify the button itself 
     deal according to the consequences bound to each button, through a switch statement 
     this to update the current display 
     */
 
-    // store in a variable the id which identifies each button
+    // store in a variable the text which identifies each button
     let target = e.target;
-    let id = e.target.getAttribute("id");
+    let value = target.textContent;
 
     // retrieve the values of the display from the state
     let display = this.state.display;
-    
-    /*
-    different buttons lead to different interactions
-    - clear => clear the text in the current display 
-    - zero => add a 0, but avoid two consecutive zeros at the beginning of the display
-    - numbers greater than 0 => append the number 
-    - operator signs => push the text in the previous position and displays the operator prominently 
-    - decimal point => add only if there doesn't exist a single decimal point
-    */
 
-    switch(value) {
-      case 'clear':
-        display.previous = '';
-        display.current = 0;
-        display.total = '';
-        break;
-
-      case 'zero':
-        if(currentDisplay.length === 1 && currentDisplay[0] === '0') {
-          // do nothing
-        }
-        else {
-          display.current += value;
-          display.total = `= ${display.current}`;
-        }
-      break;
-
-      case 'one':
-      case 'two':
-      case 'three':
-      case 'four':
-      case 'five':
-      case 'six':
-      case 'seven':
-      case 'eight':
-      case 'nine':
-        if(currentDisplay === '0' || regexOperator.test(currentDisplay)) {
-          currentDisplay = '';
-        }
-        currentDisplay += value;
-        totalDisplay = `= ${currentDisplay}`;
-
-        break;
-
-      case 'add':
-      case 'subtract':
-      case 'multiply':
-      case 'divide':
-        if(!regexOperator.test(currentDisplay)) {          
-          previousDisplay = currentDisplay;
-          currentDisplay = value;
-        } 
-        else {
-          currentDisplay = value;
-        }
-        break;
-
-      case 'decimal':
-        if(currentDisplay.indexOf('.') === -1) {
-          currentDisplay += value;
-          totalDisplay = `= ${currentDisplay}`;
-
-        }
-        break;
-
-      default:
-        break;
+    if(value === "ac") {
+      display.current = '0';
+      display.total = '';
     }
-
-
-    this.setState({
-      display: {
-        previous: previousDisplay,
-        current: currentDisplay,
-        total: totalDisplay
+    else if(regexDigits.test(value)) {
+      if(display.current === '0') {
+        display.current = '';
       }
+      display.current += value;
+    }
+    else if(regexDecimalPoint.test(value)) {
+      if(display.current.indexOf('.') === -1) {
+        display.current += value;
+      }
+    }
+    else if(regexOperators.test(value)) {
+      if(display.current !== '0') {
+        if(!regexOperators.test(display.current)) {
+          display.total = display.current;
+          display.current = '';
+          display.current += value;
+        }
+        else {
+          if(display.current.length === 1) {
+            display.current = value;
+          }
+          else {
+            // nothing
+            let temp = display.total + display.current;
+            // eslint-disable-next-line
+            display.total = Math.round(eval(temp) * 10000)/10000;
+            display.current = value;
+          }
+        }
+      }
+    }
+    else {
+      if(display.current !== '0') {
+        let total = display.total + display.current;
+        display.total = '';
+        // eslint-disable-next-line
+        display.current = Math.round(eval(total) * 10000)/10000;
+      }
+    }
+    
+    
+    this.setState({
+      display: display
     });
 
     
@@ -207,7 +184,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <Calculator buttons={this.state.buttons} display={this.state.display} handleButton={this.handleButton}/>
+        <div className="Calculator">
+            <CalculatorDisplay display={this.state.display}/>
+            <CalculatorInput buttons={this.state.buttons} handleButton={this.handleButton}/>
+        </div>
       </div>
     );
   }

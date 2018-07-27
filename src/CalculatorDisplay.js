@@ -10,22 +10,20 @@ const Header = styled.h2`
     font-size: 1rem;
   }
 
-  ${props => props.display && css`
+  ${props => props.current && css`
     font-size: 1.5rem;
     color: rgba(81,81,81,0.8);
     @media (min-width: 500px) {
       font-size: 2.2rem;
     }
   `}
+
 `;
 const CalculatorDisplay = (props) => {
   return(
     <div className="CalculatorDisplay">
-
-        <Header>{props.display.previous}</Header>
-        <Header display>{props.display.current}</Header>
-        <Header>{props.display.total}</Header>
-
+      <Header className="Header">{props.display.total}</Header>
+      <Header className="Header" current>{props.display.current}</Header>
     </div>
   );
 };

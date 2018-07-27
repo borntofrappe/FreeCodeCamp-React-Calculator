@@ -23,7 +23,7 @@
 .CalculatorInput button:hover,
 .CalculatorInput button:focus {
   filter: brightness(100%);
-  background: rgba(81,81,81,0.2);
+  background: rgba(81,81,81,0.05);
 }
 .CalculatorInput button:active {
   background: initial;
