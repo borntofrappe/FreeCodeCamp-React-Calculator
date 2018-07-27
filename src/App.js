@@ -5,8 +5,17 @@ import Calculator from './Calculator';
 /** render the component responsible for the calculator and manage the state of the application 
  * 
  STATE
- * a field with an array of objects, used to define the different buttons (each with an id an text)
- * a field with an object, used to display the possible, different visuals in the calculator display  (the previous computation, if present, the current value, being typed through the buttons, total, already showing the running total before the eqaul sign is clicked)
+ it contains
+ * an object for the display
+ *    this nests different values for the different visuals to be included in the CalculatorDisplay component
+ *    - previous computation, if present
+ *    - current value, being typed through the buttons
+ *    - total, already showing the running total, even before the eqaul sign is clicked
+ * 
+ * an array of objects for the input
+ *    this nests one object for each button, detailing different tidbits of information
+ *    - id, to identify the buttons, and to be included as **key** attribute for React
+ *    - text, to include the in the buttons the matching visual
 
 */
 class App extends Component {
@@ -93,6 +102,14 @@ class App extends Component {
     this.handleButton = this.handleButton.bind(this);
   }
 
+  /** define the function run when a button in the input component is pressed
+   * 
+   * INPUT
+   * click event
+   * BEHAVIOR
+   * according to the button pressed and the behavior expected by the calculator, display numbers, operator signs, computations. As needed   * 
+  */
+
   handleButton(e) {
     /*
     upon pressing a button, store its text in a variable to indentify the button itself 
@@ -100,50 +117,48 @@ class App extends Component {
     this to update the current display 
     */
 
-    // store in a variable the text included by the textContent method 
-    let value = e.target.textContent;
-    // store in a variable the current display value
-    let previousDisplay = this.state.display.previous;
-    let currentDisplay = this.state.display.current;
-    let totalDisplay = this.state.display.total;
-    let regexOperator = /[+*/-]/;
+    // store in a variable the id which identifies each button
+    let target = e.target;
+    let id = e.target.getAttribute("id");
 
+    // retrieve the values of the display from the state
+    let display = this.state.display;
     
     /*
     different buttons lead to different interactions
-    - ac => clear the text in the current display 
-    - 0 => add a 0, but avoid two consecutive zeros at the beginning of the display
-    - any number other than 0 => append the number 
-    - any operator sign => push the text in the previous position and displays the operator prominently 
-    - . => add only if there doesn't exist a single decimal point
+    - clear => clear the text in the current display 
+    - zero => add a 0, but avoid two consecutive zeros at the beginning of the display
+    - numbers greater than 0 => append the number 
+    - operator signs => push the text in the previous position and displays the operator prominently 
+    - decimal point => add only if there doesn't exist a single decimal point
     */
 
     switch(value) {
-      case 'ac':
-        previousDisplay = '';
-        currentDisplay = '0';
-        totalDisplay = '';
+      case 'clear':
+        display.previous = '';
+        display.current = 0;
+        display.total = '';
         break;
 
-      case '0':
+      case 'zero':
         if(currentDisplay.length === 1 && currentDisplay[0] === '0') {
           // do nothing
         }
         else {
-          currentDisplay += value;
-          totalDisplay = `= ${currentDisplay}`;
+          display.current += value;
+          display.total = `= ${display.current}`;
         }
       break;
 
-      case '1':
-      case '2':
-      case '3':
-      case '4':
-      case '5':
-      case '6':
-      case '7':
-      case '8':
-      case '9':
+      case 'one':
+      case 'two':
+      case 'three':
+      case 'four':
+      case 'five':
+      case 'six':
+      case 'seven':
+      case 'eight':
+      case 'nine':
         if(currentDisplay === '0' || regexOperator.test(currentDisplay)) {
           currentDisplay = '';
         }
@@ -152,10 +167,10 @@ class App extends Component {
 
         break;
 
-      case '+':
-      case '-':
-      case '*':
-      case '/':
+      case 'add':
+      case 'subtract':
+      case 'multiply':
+      case 'divide':
         if(!regexOperator.test(currentDisplay)) {          
           previousDisplay = currentDisplay;
           currentDisplay = value;
@@ -165,7 +180,7 @@ class App extends Component {
         }
         break;
 
-      case '.':
+      case 'decimal':
         if(currentDisplay.indexOf('.') === -1) {
           currentDisplay += value;
           totalDisplay = `= ${currentDisplay}`;
