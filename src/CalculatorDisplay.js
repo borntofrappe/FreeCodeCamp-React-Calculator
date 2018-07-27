@@ -23,7 +23,7 @@ const CalculatorDisplay = (props) => {
   return(
     <div className="CalculatorDisplay">
       <Header className="Header">{props.display.total}</Header>
-      <Header className="Header" current>{props.display.current}</Header>
+      <Header className="Header" current id="display">{props.display.current}</Header>
     </div>
   );
 };

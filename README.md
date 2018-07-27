@@ -68,31 +68,31 @@ One step at a time.
 
 Before diving into the project without much care, as I learned in a previous instance, it is important to highlight the user stories the project must fulfill in order to pass the testing suite @freeCodeCamp with flying colors.
 
-- [ ] there exist a clickable element with `id="equals"` and containing the equal `=` sign;
+- [x] there exist a clickable element with `id="equals"` and containing the equal `=` sign;
 
-- [ ] there exist 10 clickable elements, denoting numbers in the 0-9 range. These ought to have an id detailing the number with a lowercase string (one, two...);
+- [x] there exist 10 clickable elements, denoting numbers in the 0-9 range. These ought to have an id detailing the number with a lowercase string (one, two...);
 
-- [ ] there exist 4 clickable elements for the primary mathematical operators. These should come matched with an id describing the operation with a lowercase string (add, subtract...);
+- [x] there exist 4 clickable elements for the primary mathematical operators. These should come matched with an id describing the operation with a lowercase string (add, subtract...);
 
-- [ ] there exist a clickable element for the decimal `.` point, with `id="decimal"`;
+- [x] there exist a clickable element for the decimal `.` point, with `id="decimal"`;
 
-- [ ] there exist a clickable element for the clear button, with `id="clear"`;
+- [x] there exist a clickable element for the clear button, with `id="clear"`;
 
-- [ ] there exist an element displaying values with `id="display"`. When clicked, this returns the calculator to its initial state, displaying 0 in the display; <!-- yay -->
+- [x] there exist an element displaying values with `id="display"`. When clicked, this returns the calculator to its initial state, displaying 0 in the display; <!-- yay -->
 
-- [ ] the numbers included through the buttons are shown in the display;
+- [x] the numbers included through the buttons are shown in the `#display`;
 
-- [ ] it is be possible to compute a chain of numbers and show the result in the display when pressing the equal `=` sign;
+- [x] it is be possible to compute a chain of numbers and show the result in the display when pressing the equal `=` sign;
 
-- [ ] multiple zeroes are not accepted at the beginning of the input number;
+- [x] multiple zeroes are not accepted at the beginning of the input number;
 
-- [ ] the decimal point is appended to the input value. Two decimal points are not allowed. Operations with decimal points return correct values;
+- [x] the decimal point is appended to the input value. Two decimal points are not allowed. Operations with decimal points return correct values;
 
-- [ ] when including multiple operator one after the other, the last one before the next number is included is used in the computation;
+- [x] when including multiple operator one after the other, the last one before the next number is included is used in the computation;
 
-- [ ] when including an operator after the equal `=` sign, the calculator takes as first number the previous result and builds on top of it.
+- [x] when including an operator after the equal `=` sign, the calculator takes as first number the previous result and builds on top of it.
 
-- [ ] there are at least 4 decimal places when it comes to rounding.
+- [x] there are at least 4 decimal places when it comes to rounding.
 
 Quite a hefty set of requirements, but requirements which do not question the current set up in the least. The UI included above should be able to accommodate for all with simple adjustments.
 
