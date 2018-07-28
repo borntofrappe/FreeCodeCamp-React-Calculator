@@ -184,8 +184,11 @@ class App extends Component {
             let runningTotal = displayTot + displayCur;
             // show the result with at most 4 decimal points (rounding up the number moving the decimal point forward and then dividing it tomove the decimal point back)
             // eval() is used to apply math logic to numbers stored in strin values. The input value of eval is known and can only be numbers/operators/decimal points
+            // EMERGING ISSUE: as evel() returns a number, whenever the decimal point is later included the app's logic will apply the .indexOf() function to a number, which results in an error (the function accepts solely strings)
+            // to fix this issue you need to convert the number back to a string. One way to do it is by concatenating an empty string to the number (number + '')
+            // alternatively and more explicitly, the .toString() function returns a string which represents the number passed as argument
             // eslint-disable-next-line
-            displayTot = Math.round(eval(runningTotal) * 10000)/10000;
+            displayTot = (Math.round(eval(runningTotal) * 10000)/10000).toString();
             displayCur = value;
           }
         }
@@ -198,7 +201,7 @@ class App extends Component {
         let total = displayTot + displayCur;
         displayTot = '';
         // eslint-disable-next-line
-        displayCur = Math.round(eval(total) * 10000)/10000;
+        displayCur = (Math.round(eval(total) * 10000)/10000).toString();
       }
     }
     
