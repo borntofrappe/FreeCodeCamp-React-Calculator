@@ -1,16 +1,25 @@
 .CalculatorInput {
+  /* include a grid of 4 columns and 5 rows */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
 }
 .CalculatorInput button {
+  /* inherit color and font-family and remove the default background/border properties */
   color: inherit;
-  font-family: 'Open Sans', sans-serif;
-  text-transform: uppercase;
+  font-family: inherit;
   background: none;
   border: none;
+  /* text uppercase for the clear button */
+  text-transform: uppercase;
   font-size: 1.1rem;
 }
+/* 
+span the selected butons to occupy two columns or rows 
+- ac clear spans two columns
+- = equals two rows
+- 0 zero two columns
+*/
 .CalculatorInput button[id="clear"] {
   grid-column: span 2;
 }
@@ -20,11 +29,12 @@
 .CalculatorInput button[id="zero"] {
   grid-column: span 2;
 }
+/* on hover/focys slightly alter the #fff background */
 .CalculatorInput button:hover,
 .CalculatorInput button:focus {
-  filter: brightness(100%);
   background: rgba(81,81,81,0.05);
 }
+/* when clicked, change the background to its initial state */
 .CalculatorInput button:active {
   background: initial;
 }

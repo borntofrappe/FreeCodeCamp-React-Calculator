@@ -1,5 +1,6 @@
 /* include the font and colors chosen for the project */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans|Overpass+Mono");
+
 :root {
   --font: 'Open Sans', sans-serif;
   --clr-theme: #9206f5;
@@ -7,6 +8,7 @@
   --clr-theme-lgh: #9d1bf9;
   --clr-phone: #fff;
   --clr-text: #515151;
+  --clr-text-transparent: #5151514d;
 }
 
 * {
@@ -14,6 +16,7 @@
   margin: 0;
   padding: 0;
 }
+
 body {
   width: 100%;
   min-height: 100vh;

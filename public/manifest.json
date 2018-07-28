@@ -1,6 +1,6 @@
 {
   "short_name": "React Calculator",
-  "name": "Create a React calculator for the @freeCodeCamp curriculum, to complete the fourth project in the **Front End Libraries** certification.",
+  "name": "Create a React functioning calculator for the @freeCodeCamp curriculum, to complete the fourth project in the **Front End Libraries** certification.",
   "icons": [
     {
       "src": "favicon.ico",
