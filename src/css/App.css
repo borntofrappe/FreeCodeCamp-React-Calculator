@@ -21,7 +21,7 @@
   content: '';
   position: absolute;
   width: 0.3rem;
-  background: #fff;
+  background: var(--clr-phone);
   border-radius: 0 5px 5px 0;
 }
 /* push the volume and power button to the right of the phone UI
@@ -37,10 +37,16 @@ position them one after the other, following the padding included in the top of 
   height: 8%;
 }
 
+/*
+the calculator div is only used as a wrapper for the calculator components 
+thusly, in is rendered in the App feComponentTransfer
+*/
 .Calculator {
-  background: #fff;
+  /* stretch the calculator to cover the entirety of the width and height of the phone (minus padding) */
+  background: var(--clr-phone);
   width: 100%;
   height: 100%;
+  /* include the display and input area on top of one another (one taking 3/7 of the page, the other the rest) */
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 3fr 4fr;
