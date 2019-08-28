@@ -3,10 +3,10 @@
 
 :root {
   --font: "Open Sans", sans-serif;
-  --clr-theme: #9206f5;
-  --clr-theme-drk: #6604ac;
-  --clr-theme-lgh: #9d1bf9;
-  --clr-phone: #fff;
+  --clr-theme: hsl(275, 95%, 49%);
+  --clr-theme-drk: hsl(275, 95%, 35%);
+  --clr-theme-lgh: hsl(275, 95%, 54%);
+  --clr-phone: hsl(0, 0%, 100%);
   --clr-text: hsl(0, 0%, 30%);
   --clr-text-lgh: hsl(0, 0%, 50%);
   --clr-text-bg: hsl(0, 0%, 95%);

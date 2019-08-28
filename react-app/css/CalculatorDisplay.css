@@ -10,7 +10,7 @@
   text-align: right;
   padding: 1rem;
   /* border bottom to separate the displays from the buttons */
-  border-bottom: 1px solid var(--clr-text-lgh);
+  border-bottom: 2px solid var(--clr-text-bg);
   font-family: var(--font);
 }
 

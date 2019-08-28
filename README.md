@@ -1,52 +1,20 @@
-_Small note_
+# freeCodeCamp React Calculator
 
-The project has been developed locally, through `create-react-app`. It is however available on CodePen, [right here](https://codepen.io/borntofrappe/pen/OwxKEY)
+> created 27/07/2018
+>
+> updated 28/08/2019
 
-# Preface 
+## Project Structure
 
-For the fourth project of five necessary to earn the _Front End Libraries_ certification @freeCodeCamp, the task is to create a functioning calculator.
+The project has been developed locally through the `create-react-app` utility. In the **react-app** folder you find the components and styles completing the application, while [here you find a live demo](https://codepen.io/borntofrappe/pen/OwxKEY).
 
-Much alike for the [Random Quote Machine](https://codepen.io/borntofrappe/pen/yqXOXG) I have already built the [application before](https://codepen.io/borntofrappe/pen/zjNKYG), and I am rather proud of that effort. However and again, much alike for the [old version](https://codepen.io/borntofrappe/pen/VQYmpJ) of the quote machine, at the time I did not use any library, working with JavaScript only. To completely earn the certification, and measure up to the new requirements set by @freeCodeCamp, I therefore decided to create a new application, with the **React.js** library.
+## Preface
 
-# Process
+This project sets out to create a functioning calculator with the React framerwork. I have previously completed the task with vanilla JavaScript, as you can find [here on CodePen](https://codepen.io/borntofrappe/pen/zjNKYG). Here however, I replicate the feat with the React library for the _Front End Libraries_ certification in the curriculum @freecodecamp.
 
-Since I have already spent some time with the logic behind a JS calculator, I decided to also include other technologies in the project. The "knowledge stack" I used can be briefly describe as follows:
+## User Stories
 
-- **React.js** is used for the structure of the page and also for the state management. This time around, I decided not to pick up Redux, as I felt I need more research on the library itself. 
-
-- **CSS grid** is used alongside flex properties for the layout of the calculator. Nothing too fancy. The overall design is scheduled to replicate the simple UI of the calculator app, with display at the top and buttons at the bottom. You can get an idea [right here](https://codepen.io/borntofrappe/full/djzGWQ).
-
-- **Styled Components** is included to style the project, and specifically components. I planned to use this library alonside normal CSS stylesheets, which were used for the overall design of the page (the layout for instance). The library is included to style smaller components, like buttons, or grid cells making up the calculator. Considering the component-based logic of React and supposedly styled components, its inclusion is limited to independent, self-contained elements. At the time of writing, I think I find one particular use case for the library, which still needs exploring.
-
-With this small stack, the overall design of the page is kept at first as simple as possible, to prioritize making a functioning project first. 
-
-The idea is to make the project work before making it pretty, even if some styling choices are already incorporated to add some default, pleasant-to-look-at starting point. I find that a few design choices (in terms of color, white space and centering for instance) help a lot in the beginning of the project.
-
-Call it attachment, call it investment or even plain silly self-fulfilling prophecy, but it has worked rather well for me so fat.
-
-## Design 
-
-The following color and fonts are chosen for the project:
-
-- **#9206F5** for the background. Color courtesy of my [Random Color Machine](https://codepen.io/borntofrappe/pen/yqXOXG). Always nice to use a tool I made of my own;
-
-- **#fff** for the color of the phone and its background;
-
-- **#252525** for the text, of the buttons and of the display. Different variations are included for lighter/ more transparent color choices, but centered around this starting value. In the end, I decided to pick a lighter hue, with #515151.
-
-- [Open Sans](https://fonts.google.com/specimen/Open+Sans) for the text of the entire application;
-
-You can find a first version of the UI [right here](https://codepen.io/borntofrappe/pen/djzGWQ).
-
-**Update**
-
-The [live version](https://codepen.io/borntofrappe/pen/djzGWQ) of the project UI shows the appearance of the application in its initial state. However, one crucial UI addition needs to be included, as concerns the display of a _functioning_ application. Where numbers are included one after the other, where the results are shown.
-
-You can find the updated UI in the "starting-ui" folder. In the end, the React application uses a simplified version of this UI, but its design has been quite teaching, forcing me to realize how the design ought to accommodate for interactive elements, not immediately visible in a mockup.
-
-## User Stories 
-
-Before diving into the project without much care, as I learned in a previous instance, it is important to highlight the user stories the project must fulfill in order to pass the testing suite _@freeCodeCamp_, possibly with flying colors.
+The following user stories must be fulfilled to have the application pass all the tests set up @freecodecamp.
 
 - [x] there exist a clickable element with `id="equals"` and containing the equal `=` sign;
 
@@ -74,93 +42,27 @@ Before diving into the project without much care, as I learned in a previous ins
 
 - [x] there are at least 4 decimal places when it comes to rounding.
 
-Quite a hefty set of requirements, but requirements which do not question the current set up in the least. The UI included above should be able to accommodate all with simple adjustments.
+## Technology Stack
 
-## [React.js](https://reactjs.org/)
+Since I have already spent some time with the logic behind a JavaScript calculator, I decided to incorporate other technologies.
 
-The following component-based structure is included on the basis of the HTML markup created for the simple UI.
+- **React.js** is the cornerstone of the application.
 
-|Component|Brief|
-|---|---|
-|`index.js`|Render the component responsible for the application|
-|`App.js`|Nest a calculator container, with the components making up the calculator. Additionally, it manages the state of the application|
-|`CalculatorDisplay`|Render the display. The numbers included in the calculator and the computation of them|
-|`CalculatorInput`|Render the buttons of the calculator|
+- **CSS grid** is used alongside flex properties for the layout of the calculator. The goal is to replicate the UI of a basic calculator, with a display at the top and buttons at the bottom.
 
+With this small stack, the overall design of the page is kept at first as simple as possible, to prioritize making a functioning project first.
 
-## [Styled Components](https://www.styled-components.com/)
+## Design
 
-The project uses the styling library _Styled Components_. It allows to easily define property-value pairs connected to the elements and components which are later rendered.
+The following color and fonts are chosen for the project:
 
-**Install** 
+- `hsl(275, 95%, 49%)` as a theme color. Lighter and darker variations allow to include a subtle gradient. for the background. I obtained the color from my [Random Color Machine](https://codepen.io/borntofrappe/pen/yqXOXG).
 
-To use the library it is first necessary to include it in the environment set up with `create-react-app`. The following command, in the root folder, allows such a feat. 
+- `hsl(0, 0%, 100%)` for the color of the phone and its background;
 
-```code
-npm i styled-components
-```
+- `hsl(0, 0%, 30%)` for the text, of the buttons and of the display. Slightly lighter hues are included for less important parts of the UI, not to mention the border dividing the components.
 
-In the package.json it should be possible to find the connected package included.
+- [Open Sans](https://fonts.google.com/specimen/Open+Sans) for the text of the entire application.
 
-```JSON
-{
-  "styled-components": "^3.3.3"
-}
-```
-**Style**
+You can find a first version of the UI [right here](https://codepen.io/borntofrappe/pen/djzGWQ).
 
-Instead of styling components in a separate CSS file, the library is used by creating a custom component, which is immediately styled.
-
-The syntax here used doesn't differ wildly from straight CSS, so the learning curve is slightly softened.
-
-- create the styled component, with `styled.HTMLelement`
-
-  ```JS
-  const Header = styled.h2``;
-  ```
-
-- include property-value pairs in the backticks included after such an expression
-
-  ```JS
-  const Header = styled.h2`
-    font-size: 0.9rem;
-    color: rgba(81,81,81,0.5);
-  `;
-  ```
-
-- include the component as you would normally for any custom component, in the React structure.
-
-  ```JS
-  const ComponentName = () => {
-    return(
-      <div className="ComponentName">
-        <Header className="ComponentName">Header!</Header>
-      </div>
-    );
-  };
-  ```
-
-This simple example actually covers most of what the project at hand has used in reference to _Styled Components_. That being said, there's another nugget worth of information.
-It is indeed possible to style components according to the `props` they hold. For instance, and for the project at hand, a second header is given a particular styling through the `current` prop.
-
-```JS
-const Header = styled.h2`
-  font-size: 0.9rem;
-  color: rgba(81,81,81,0.5);
-
-  ${ props => props.current && css`
-    text-decoration: underline;
-  `}
-`;
-
-const ComponentName = () => {
-  return(
-    <div className="ComponentName">
-      <Header className="ComponentName">Header!</Header>
-      <Header className="ComponentName" current>Current Header!!</Header>
-    </div>
-  );
-};
-```
-
-This feat is allowed by the way styled components are created, by the `backticks` which allow the script to include JavaScript functions.

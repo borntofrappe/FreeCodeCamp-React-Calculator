@@ -11,7 +11,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     /*
-    in the state keep track of the string displayed in the calculator and the total of the computation
+    in the state keep track of the string displayed in the calculator, as well as the total of the computation
     */
     this.state = {
       current: '0',
@@ -28,8 +28,10 @@ class App extends Component {
       total: '',
     })
   }
+  // compute the total
   handleComputation() {
     const { current, total } = this.state;
+    // ! compute the total only if the last figure included in the current display is **not** an operator
     if(!/[+\-*/]/.test(current[current.length -1])) {
       this.setState({
         current:  Math.round(eval(`${total}${current}`) * 1000) / 1000,
@@ -40,36 +42,41 @@ class App extends Component {
   // include the operator
   handleOperator(operator) {
     const { current, total } = this.state;
-    // if current already has an operator consider the last value of current
-    // if this is an operator, substitute it with the new one
-    // else push current to total and set the operator to current
+    // if current already displays an operator, consider the position of the operator itself
     if(/[+\-*/]/.test(current)) {
+      // the operator is the last figure --> substitute with the new operator
       if(/[+\-*/]/.test(current[current.length -1])) {
         this.setState({
           current: operator,
         })
       } else {
+        // the existing operator is followed by numbers: compute te total and include the operator in the current display
         this.setState({
           current: operator,
           total: Math.round(eval(`${total}${current}`) * 1000) / 1000,
         })
       }
     } else {
-      // without operators include the operator in current, move the expression of current to total
+      // there is no operator: add the operator to the current display whilst moving the existing expression to the total
       this.setState({
         current: operator,
         total: current,
       })
     }
   }
+  // add a digit
   handleDigit(digit) {
     const { current } = this.state;
+    // ! add the digit only if the current display is different from '0'
+    // this to avoid leading 0s
     this.setState({
       current: current !== '0' ? `${current}${digit}` : digit,
     })
   }
+  // add the decimal point
   handleDecimal() {
     const { current } = this.state;
+    // ! add the point only if no point is already included
     if(!/\./.test(current)) {
       this.setState({
         current: `${current}.`
@@ -86,7 +93,7 @@ class App extends Component {
     switch(value) {
       case 'ac':
         this.handleClear();
-      break;
+        break;
       case '0':
       case '1':
       case '2':
@@ -112,7 +119,7 @@ class App extends Component {
         this.handleDecimal();
         break;
       default:
-          console.error('Technically, this should never happen.');
+        console.error('Technically, this should never happen.');
     }
   }
 
@@ -123,10 +130,11 @@ class App extends Component {
   */
   render() {
     const { current, total } = this.state;
+    const { handleButton } = this;
     return (
       <div className="App">
-            <CalculatorDisplay current={current} total={total}/>
-            <CalculatorInput handleButton={this.handleButton}/>
+          <CalculatorDisplay current={current} total={total}/>
+          <CalculatorInput handleButton={handleButton}/>
       </div>
     );
   }

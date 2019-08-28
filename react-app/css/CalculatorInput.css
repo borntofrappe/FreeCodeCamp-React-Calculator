@@ -3,6 +3,20 @@
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(5, 1fr);
+  /*
+  change the position and size of the buttons to achieve the desired display
+
+  \ac\ac\/\*\
+  \7 \8 \9\-\
+  \4 \5 \6\+\
+  \1 \2 \3\=\
+  \0 \0 \.\=\
+
+  - ac spans two columns
+  - = spans two rows
+  - 0 spans two columns
+  */
+  grid-template-areas: "clear clear division multiplication" "seven eight nine minus" "four five six plus" "one two three equal" "zero zero point equal";
 }
 .CalculatorInput button {
   /* inherit color and font-family and remove the default background/border properties */
@@ -14,25 +28,57 @@
   text-transform: uppercase;
   font-size: 1.1rem;
 }
-/*
-change the space occupied by a few buttons to achieve the desired display
 
-\ac\ac\/\*\
-\7 \8 \9\-\
-\4 \5 \6\+\
-\1 \2 \3\=\
-\0 \0 \.\=\
-
-- ac spans two columns
-- = spans two rows
-- 0 spans two columns
-*/
-.CalculatorInput button[data-button="ac"],
 .CalculatorInput button[data-button="0"] {
-  grid-column: span 2;
+  grid-area: zero;
+}
+.CalculatorInput button[data-button="1"] {
+  grid-area: one;
+}
+.CalculatorInput button[data-button="2"] {
+  grid-area: two;
+}
+.CalculatorInput button[data-button="3"] {
+  grid-area: three;
+}
+.CalculatorInput button[data-button="4"] {
+  grid-area: four;
+}
+.CalculatorInput button[data-button="5"] {
+  grid-area: five;
+}
+.CalculatorInput button[data-button="6"] {
+  grid-area: six;
+}
+.CalculatorInput button[data-button="7"] {
+  grid-area: seven;
+}
+.CalculatorInput button[data-button="8"] {
+  grid-area: eight;
+}
+.CalculatorInput button[data-button="9"] {
+  grid-area: nine;
+}
+.CalculatorInput button[data-button="+"] {
+  grid-area: plus;
+}
+.CalculatorInput button[data-button="-"] {
+  grid-area: minus;
+}
+.CalculatorInput button[data-button="*"] {
+  grid-area: multiplication;
+}
+.CalculatorInput button[data-button="/"] {
+  grid-area: division;
+}
+.CalculatorInput button[data-button="."] {
+  grid-area: point;
 }
 .CalculatorInput button[data-button="="] {
-  grid-row: span 2;
+  grid-area: equal;
+}
+.CalculatorInput button[data-button="ac"] {
+  grid-area: clear;
 }
 
 /* on hover/focus slightly darken the #fff background */
