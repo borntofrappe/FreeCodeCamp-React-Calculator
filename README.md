@@ -36,7 +36,9 @@ The following user stories must be fulfilled to have the application pass all th
 
 - [x] the decimal point is appended to the input value. Two decimal points are not allowed and operations with decimal points return correct values;
 
-- [x] when including multiple operator one after the other, the last one before the next number is included and used in the computation;
+- [x] when including multiple operator one after the other, the last one before the next number is included and used in the computation. An an additional feat:
+
+  - [x] the last operator should be considered _unless_ the operator is the `-` minus sign. In this instance the operator should be retained as to signal a negative number.
 
 - [x] when including an operator after the equal `=` sign, the calculator takes as first number the previous result and builds on top of it.
 

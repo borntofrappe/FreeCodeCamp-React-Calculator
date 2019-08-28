@@ -34,7 +34,7 @@ class App extends Component {
     // ! compute the total only if the last figure included in the current display is **not** an operator
     if(!/[+\-*/]/.test(current[current.length -1])) {
       this.setState({
-        current:  Math.round(eval(`${total}${current}`) * 1000) / 1000,
+        current:  Math.round(eval(`${total}${current}`) * 10000) / 10000,
         total: '',
       })
     }
@@ -46,14 +46,21 @@ class App extends Component {
     if(/[+\-*/]/.test(current)) {
       // the operator is the last figure --> substitute with the new operator
       if(/[+\-*/]/.test(current[current.length -1])) {
-        this.setState({
-          current: operator,
-        })
+        // ! do not substitute the operator, but append the value, if the value is the minus sign and there's no preceding minus sign
+        if(operator !== '-') {
+          this.setState({
+            current: operator,
+          })
+        } else if(!/\-/.test(current)) {
+          this.setState({
+            current: `${current}${operator}`
+          })
+        }
       } else {
         // the existing operator is followed by numbers: compute te total and include the operator in the current display
         this.setState({
           current: operator,
-          total: Math.round(eval(`${total}${current}`) * 1000) / 1000,
+          total: Math.round(eval(`${total}${current}`) * 10000) / 10000,
         })
       }
     } else {

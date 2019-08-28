@@ -8,7 +8,8 @@ const CalculatorDisplay = (props) => {
   return(
     <div className="CalculatorDisplay">
       <h2>{total}</h2>
-      <h1>{current}</h1>
+      {/* add an identifier as per the guidelines @freecodecamp */}
+      <h1 id="display">{current}</h1>
     </div>
   );
 };

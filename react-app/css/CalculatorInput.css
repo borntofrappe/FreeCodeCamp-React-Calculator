@@ -16,7 +16,7 @@
   - = spans two rows
   - 0 spans two columns
   */
-  grid-template-areas: "clear clear division multiplication" "seven eight nine minus" "four five six plus" "one two three equal" "zero zero point equal";
+  grid-template-areas: "clear clear divide multiply" "seven eight nine subtract" "four five six add" "one two three equals" "zero zero decimal equals";
 }
 .CalculatorInput button {
   /* inherit color and font-family and remove the default background/border properties */
@@ -29,55 +29,55 @@
   font-size: 1.1rem;
 }
 
-.CalculatorInput button[data-button="0"] {
+.CalculatorInput button#zero {
   grid-area: zero;
 }
-.CalculatorInput button[data-button="1"] {
+.CalculatorInput button#one {
   grid-area: one;
 }
-.CalculatorInput button[data-button="2"] {
+.CalculatorInput button#two {
   grid-area: two;
 }
-.CalculatorInput button[data-button="3"] {
+.CalculatorInput button#three {
   grid-area: three;
 }
-.CalculatorInput button[data-button="4"] {
+.CalculatorInput button#four {
   grid-area: four;
 }
-.CalculatorInput button[data-button="5"] {
+.CalculatorInput button#five {
   grid-area: five;
 }
-.CalculatorInput button[data-button="6"] {
+.CalculatorInput button#six {
   grid-area: six;
 }
-.CalculatorInput button[data-button="7"] {
+.CalculatorInput button#seven {
   grid-area: seven;
 }
-.CalculatorInput button[data-button="8"] {
+.CalculatorInput button#eight {
   grid-area: eight;
 }
-.CalculatorInput button[data-button="9"] {
+.CalculatorInput button#nine {
   grid-area: nine;
 }
-.CalculatorInput button[data-button="+"] {
-  grid-area: plus;
+.CalculatorInput button#add {
+  grid-area: add;
 }
-.CalculatorInput button[data-button="-"] {
-  grid-area: minus;
+.CalculatorInput button#subtract {
+  grid-area: subtract;
 }
-.CalculatorInput button[data-button="*"] {
-  grid-area: multiplication;
+.CalculatorInput button#multiply {
+  grid-area: multiply;
 }
-.CalculatorInput button[data-button="/"] {
-  grid-area: division;
+.CalculatorInput button#divide {
+  grid-area: divide;
 }
-.CalculatorInput button[data-button="."] {
-  grid-area: point;
+.CalculatorInput button#decimal {
+  grid-area: decimal;
 }
-.CalculatorInput button[data-button="="] {
-  grid-area: equal;
+.CalculatorInput button#equals {
+  grid-area: equals;
 }
-.CalculatorInput button[data-button="ac"] {
+.CalculatorInput button#clear {
   grid-area: clear;
 }
 
