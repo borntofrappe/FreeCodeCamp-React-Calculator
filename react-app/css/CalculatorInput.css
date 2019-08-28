@@ -14,25 +14,31 @@
   text-transform: uppercase;
   font-size: 1.1rem;
 }
-/* 
-span the selected butons to occupy two columns or rows 
-- ac clear spans two columns
-- = equals two rows
-- 0 zero two columns
+/*
+change the space occupied by a few buttons to achieve the desired display
+
+\ac\ac\/\*\
+\7 \8 \9\-\
+\4 \5 \6\+\
+\1 \2 \3\=\
+\0 \0 \.\=\
+
+- ac spans two columns
+- = spans two rows
+- 0 spans two columns
 */
-.CalculatorInput button[id="clear"] {
+.CalculatorInput button[data-button="ac"],
+.CalculatorInput button[data-button="0"] {
   grid-column: span 2;
 }
-.CalculatorInput button[id="equals"] {
+.CalculatorInput button[data-button="="] {
   grid-row: span 2;
 }
-.CalculatorInput button[id="zero"] {
-  grid-column: span 2;
-}
-/* on hover/focys slightly alter the #fff background */
+
+/* on hover/focus slightly darken the #fff background */
 .CalculatorInput button:hover,
 .CalculatorInput button:focus {
-  background: rgba(81,81,81,0.05);
+  background: var(--clr-text-bg);
 }
 /* when clicked, change the background to its initial state */
 .CalculatorInput button:active {

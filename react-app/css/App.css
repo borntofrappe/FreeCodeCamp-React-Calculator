@@ -1,6 +1,6 @@
-/* include the UI of the phone in which to display the calculator */
+/* wrapping container */
 .App {
-  /* style the phone UI to have a white background and be at most 350px wide */
+  /* style the phone to have a white background and be at most 350px wide */
   background: var(--clr-phone);
   width: 90vw;
   max-width: 350px;
@@ -11,14 +11,18 @@
   padding: 2rem 0.7rem 1rem;
   /* include rounded corners and a notable shadow beneath the UI */
   border-radius: 10px;
-  box-shadow: 7px 10px 10px var(--clr-theme-drk), -4px -2px 5px var(--clr-theme-drk);
+  box-shadow: 7px 10px 10px var(--clr-theme-drk),
+    -4px -2px 5px var(--clr-theme-drk);
   /* position relative to include a couple of visuals to remind of a phone outline */
   position: relative;
+  /* display the components in a grid of 1 column and 2 rows */
+  display: grid;
+  grid-template-rows: 2fr 3fr;
 }
 /* with one pseudo element each, include the volume and power buttons */
 .App:before,
 .App:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 0.3rem;
   background: var(--clr-phone);
@@ -35,19 +39,4 @@ position them one after the other, following the padding included in the top of 
   top: 25%;
   left: 100%;
   height: 8%;
-}
-
-/*
-the calculator div is only used as a wrapper for the calculator components 
-thusly, in is rendered in the App feComponentTransfer
-*/
-.Calculator {
-  /* stretch the calculator to cover the entirety of the width and height of the phone (minus padding) */
-  background: var(--clr-phone);
-  width: 100%;
-  height: 100%;
-  /* include the display and input area on top of one another (one taking 3/7 of the page, the other the rest) */
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 3fr 4fr;
 }

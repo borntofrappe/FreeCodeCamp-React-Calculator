@@ -1,0 +1,37 @@
+.CalculatorDisplay {
+  /*
+  position the different displays one on top of the other
+  push them both at the bottom of the container
+  */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  /* align the text to the right */
+  text-align: right;
+  padding: 1rem;
+  /* border bottom to separate the displays from the buttons */
+  border-bottom: 1px solid var(--clr-text-lgh);
+  font-family: var(--font);
+}
+
+/*
+style the headers with a definite font size and color
+slightly increase the font-size for larger viewports
+*/
+.CalculatorDisplay h2 {
+  font-size: 0.9rem;
+  color: var(--clr-text-lgh);
+}
+.CalculatorDisplay h1 {
+  margin-top: 0.5rem;
+  font-size: 1.5rem;
+  color: var(--clr-text);
+}
+@media (min-width: 500px) {
+  .CalculatorDisplay h2 {
+    font-size: 1rem;
+  }
+  .CalculatorDisplay h1 {
+    font-size: 2.2rem;
+  }
+}

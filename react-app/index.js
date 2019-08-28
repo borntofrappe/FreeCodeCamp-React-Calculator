@@ -2,8 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/index.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
 
-// render the single stateful component making up the application
+// render the single stateful component in the prescribed node
 ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
